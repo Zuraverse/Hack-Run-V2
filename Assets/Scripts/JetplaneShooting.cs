@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JetplaneShooting : MonoBehaviour
 {
+
+
 public GameObject bulletPrefab; // assign bullet prefab in the editor
 public Transform bulletInstantiatePoint;
 public float bulletSpeed = 10f;
@@ -12,6 +15,8 @@ private bool canShoot = false; // flag to indicate whether the player can shoot
 private void Start()
 {
     currentBullets = 0;
+
+    
 }
 
 private void Update()
@@ -28,8 +33,14 @@ private void Update()
         // Destroy the bullet after a set amount of time
         Destroy(bullet, bulletLifetime);
 
-        currentBullets++;
-
+        currentBullets--;
+         if(currentBullets == 0){
+            canShoot = false;
+        }
+        
+        //if(currentBullets >= maxBullets){
+        //    currentBullets = 0;
+        ///}
 
     }
 }
@@ -48,7 +59,7 @@ private void OnCollisionEnter(Collision collision)
 public void ActivatePowerup()
 {
     Debug.Log("Activated Activated");
-    currentBullets += 5; // add 5 bullets every time the power-up is activated
+    currentBullets = 5; // add 5 bullets every time the power-up is activated
     canShoot = true;
 }
 }

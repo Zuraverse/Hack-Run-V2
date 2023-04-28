@@ -24357,6 +24357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c0f12e75e3b3041a69b5932ca716a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WalletAddress: {fileID: 0}
   bulletPrefab: {fileID: 9135762813835935676, guid: cbe07454fb184824cb5440e67c46496a, type: 3}
   bulletInstantiatePoint: {fileID: 9045736596679915629}
   bulletSpeed: 50
