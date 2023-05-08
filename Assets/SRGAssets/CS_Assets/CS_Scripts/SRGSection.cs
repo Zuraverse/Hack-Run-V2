@@ -77,8 +77,5 @@ namespace SpeederRunGame
 			return objects;
 		}
 
-
-		
-
 	}
 }

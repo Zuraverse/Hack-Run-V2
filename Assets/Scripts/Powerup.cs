@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
+    public GameObject bulletUIActivator;
+    private GameObject UIActivate;
+
+    public void Start(){
+      //  UIActivate = GameObject.FindGameObjectWithTag("bulletImageUI");
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -13,6 +19,7 @@ public class Powerup : MonoBehaviour
             {
                 // Call the ActivatePowerup function on the JetplaneShooting component
                 jetplaneShooting.ActivatePowerup();
+
             }
             else
             {
@@ -23,4 +30,5 @@ public class Powerup : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }

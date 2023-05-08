@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SRGAssets/CS_Assets/CS_Scenes/SRGStage01.unity
     guid: b15d7b52debf2e14aa6acd0b3b3eac05
+  - enabled: 1
+    path: Assets/SRGAssets/CS_Assets/CS_Scenes/Leaderboard.unity
+    guid: d6a55c49295814ca98d4a7d568998520
   m_configObjects: {}

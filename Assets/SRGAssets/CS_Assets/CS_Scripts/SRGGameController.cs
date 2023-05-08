@@ -232,7 +232,7 @@ namespace SpeederRunGame
 			// Make the score count up to its current value
 			if ( scoreCount < score )
 			{
-				// Count up to the courrent value
+				// Count up to the current value
 				scoreCount = Mathf.Lerp( scoreCount, score, Time.deltaTime * 10);
 				
 				// Update the score text
