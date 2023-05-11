@@ -12,6 +12,7 @@ namespace SpeederRunGame
 	/// </summary>
 	public class SRGGameController:MonoBehaviour 
 	{
+
 		[Header("<Player Options>")]
 		[Tooltip("The player object, assigned from the project and created at the start of the game")]
 		public Transform playerObject;
@@ -605,14 +606,17 @@ namespace SpeederRunGame
 			//Show the game over screen
 			if ( gameOverCanvas )    
 			{
-				//Show the game over screen
-				gameOverCanvas.gameObject.SetActive(true);
+                
+                //Show the game over screen
+                gameOverCanvas.gameObject.SetActive(true);
 				
 				//Write the score text
 				gameOverCanvas.Find("TextScore").GetComponent<Text>().text = "SCORE " + score.ToString();
-				
-				//Check if we got a high score
-				if ( score > highScore )    
+                FindObjectOfType<PlayFabManager>().SendLeaderboard(((int)score));
+
+
+                //Check if we got a high score
+                if ( score > highScore )    
 				{
 					highScore = score;
 					

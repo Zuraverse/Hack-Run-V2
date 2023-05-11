@@ -4,10 +4,13 @@ using UnityEngine;
 using TMPro;
 using PlayFab;
 using PlayFab.ClientModels;
+using UnityEngine.UI;
 
 public class PlayFabManager : MonoBehaviour
 {
     public TextMeshProUGUI leaderboardText;
+
+    //[SerializeField] private Text WalletText;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,20 +33,58 @@ public class PlayFabManager : MonoBehaviour
         Debug.Log(error.GenerateErrorReport());
     }
 
-    public void SendLeaderboard(int score){
-        var request = new UpdatePlayerStatisticsRequest {
+    public void SendLeaderboard(int score)
+    {
+        var request = new UpdatePlayerStatisticsRequest
+        {
             Statistics = new List<StatisticUpdate> {
-                new StatisticUpdate {
-                    StatisticName = "HackRunLeaderboard",
-                    Value = score
-                }
+            new StatisticUpdate {
+                StatisticName = "HackRunLeaderboard",
+                Value = score
             }
+        }
         };
         PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
     }
 
-    void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result) {
-        Debug.Log("Successfull leaderboard sent");
+    void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
+    {
+        Debug.Log("Successfully updated leaderboard");
+
+        // Update the high score for the current player
+        var request = new GetPlayerStatisticsRequest
+        {
+            StatisticNames = new List<string> { "HackRunLeaderboard" }
+        };
+        PlayFabClientAPI.GetPlayerStatistics(request, OnGetPlayerStatistics, OnError);
+    }
+
+    void OnGetPlayerStatistics(GetPlayerStatisticsResult result)
+    {
+        int highScore = 0;
+
+        // Find the "HackRunLeaderboard" statistic and get the highest score
+        foreach (var stat in result.Statistics)
+        {
+            if (stat.StatisticName == "HackRunLeaderboard" && stat.Value > highScore)
+            {
+                highScore = (int)stat.Value;
+            }
+        }
+
+        // Update the high score for the current player
+        var updateRequest = new UpdateUserDataRequest
+        {
+            Data = new Dictionary<string, string> {
+            { "HighScore", highScore.ToString() }
+        }
+        };
+        PlayFabClientAPI.UpdateUserData(updateRequest, OnUpdateUserData, OnError);
+    }
+
+    void OnUpdateUserData(UpdateUserDataResult result)
+    {
+        Debug.Log("Successfully updated user data");
     }
 
     public void GetLeaderboard() {
@@ -56,11 +97,11 @@ public class PlayFabManager : MonoBehaviour
     }
 
 void OnLeaderboardGet(GetLeaderboardResult result){
-    string leaderboardString = "";
-    foreach(var item in result.Leaderboard) {
-        leaderboardString += item.Position + ". " + item.PlayFabId + " - " + item.StatValue + "\n";
+        string leaderboardString = "";
+        foreach(var item in result.Leaderboard) {
+            leaderboardString += item.Position + "              " + PlayerPrefs.GetString("WalletAddress") + "           " + item.StatValue + "\n";
+        }
+        leaderboardText.text = leaderboardString;
     }
-    leaderboardText.text = leaderboardString;
-}
 
 }
