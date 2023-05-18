@@ -612,7 +612,8 @@ namespace SpeederRunGame
 				
 				//Write the score text
 				gameOverCanvas.Find("TextScore").GetComponent<Text>().text = "SCORE " + score.ToString();
-                FindObjectOfType<PlayFabManager>().SendLeaderboard(((int)score));
+                //FindObjectOfType<PlayFabManager>().SendLeaderboard(((int)score));
+                FindObjectOfType<TestEmall>().SendLeaderboardd(((int)score));
 
 
                 //Check if we got a high score

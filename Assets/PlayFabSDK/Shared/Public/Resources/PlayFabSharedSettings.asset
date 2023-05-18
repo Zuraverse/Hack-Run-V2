@@ -15,7 +15,7 @@ MonoBehaviour:
   TitleId: 9EF26
   DeveloperSecretKey: OTGPHMUZOXZ7P9HW3ODOFDYFI4QZD5DR4FKAO6QUWFCIN1FFFB
   ProductionEnvironmentUrl: 
-  RequestType: 0
+  RequestType: 2
   DisableDeviceInfo: 0
   DisableFocusTimeCollection: 0
   RequestTimeout: 2000

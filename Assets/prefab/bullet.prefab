@@ -9910,10 +9910,9 @@ MonoBehaviour:
   bulletLifetime: 3
   maxBullets: 5
   currentBullets: 0
-  audioSource: {fileID: 0}
-  audioSource1: {fileID: 5641117509749118548}
-  hitObstacleAudioClip: {fileID: 8300000, guid: fc2bed57b161cee4392284c61b0157c3, type: 3}
-  destroyObstacleAudioClip: {fileID: 8300000, guid: 01c29d1440038474e9fdfc828c0c2595, type: 3}
+  audioSource: {fileID: 5641117509749118548}
+  bulletAudioClip: {fileID: 0}
+  blastSFX: {fileID: 8300000, guid: 01c29d1440038474e9fdfc828c0c2595, type: 3}
 --- !u!82 &5641117509749118548
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9924,7 +9923,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fc2bed57b161cee4392284c61b0157c3, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

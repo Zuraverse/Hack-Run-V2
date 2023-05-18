@@ -10,14 +10,16 @@ public class Powerup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.tag == "bullet")
         {
+
             Debug.Log("Collides Collides Collides");
             // Get a reference to the JetplaneShooting component attached to the player object
-            JetplaneShooting jetplaneShooting = other.GetComponentInChildren<JetplaneShooting>();
+            JetplaneShooting jetplaneShooting = this.GetComponentInChildren<JetplaneShooting>();
             if (jetplaneShooting != null)
             {
                 // Call the ActivatePowerup function on the JetplaneShooting component
+                Debug.Log("Triggered");
                 jetplaneShooting.ActivatePowerup();
 
             }
@@ -27,7 +29,7 @@ public class Powerup : MonoBehaviour
             }
 
             // Destroy this power-up item
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

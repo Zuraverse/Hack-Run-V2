@@ -13,6 +13,10 @@ public class JetplaneShooting : MonoBehaviour
     public int currentBullets; // current number of bullets the player has
     private bool canShoot = false; // flag to indicate whether the player can shoot
     private GameObject bulletUIImages;
+
+    public AudioSource audioSource;
+    public AudioClip bulletAudioClip;
+    public AudioClip blastSFX;
     private void Start()
     {
         currentBullets = 0;
@@ -26,7 +30,7 @@ public class JetplaneShooting : MonoBehaviour
         {
             // Instantiate a new bullet prefab at the bullet instantiate point's position and rotation
             GameObject bullet = Instantiate(bulletPrefab, bulletInstantiatePoint.position, bulletInstantiatePoint.rotation);
-
+            audioSource.PlayOneShot(bulletAudioClip);
             // Add force to the bullet in the direction the jetplane is facing
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
             bulletRigidbody.AddForce(transform.forward * bulletSpeed, ForceMode.VelocityChange);
@@ -64,9 +68,14 @@ public class JetplaneShooting : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("obstacle"))
         {
-            Debug.Log("Collides");
-            Destroy(collision.gameObject); // destroy the obstacle game object when hit by a bullet
-            Destroy(bulletPrefab);
+            audioSource.PlayOneShot(blastSFX);
+            if (audioSource.isPlaying)
+            {
+                Debug.Log("Collides");
+                Destroy(collision.gameObject); // destroy the obstacle game object when hit by a bullet
+                Destroy(gameObject);
+            }
+             // destroy the bullet game object
             currentBullets--;
         }
     }
