@@ -3,89 +3,119 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using System.Xml.Serialization;
+using System.Data.Common;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+using System.Diagnostics.CodeAnalysis;
 
 public class LeaderboardManager : MonoBehaviour
 {
-    private void Start()
+    public Text leaderboardText;
+    // Start is called before the first frame update
+    void Start()
     {
-        Login("sawan");
+        Invoke("Loginn", 5);
     }
-    public void Login(string customId)
+
+    void OnSucces(LoginResult result)
     {
+        Debug.Log("Congrats Your Account is created");
+    }
+
+    void OnError(PlayFabError error)
+    {
+        Debug.Log("Failure");
+        Debug.LogError(error.GenerateErrorReport());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void Loginn()
+    {
+        //PlayerPrefs.SetString("myString", PlayerPrefs.GetString("WalletAddress"));
+        string walletAdress = PlayerPrefs.GetString("WalletAddress");
+        Debug.Log(walletAdress);
+        if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
+        {
+            PlayFabSettings.TitleId = "9EF26";
+        }
+
         var request = new LoginWithCustomIDRequest
         {
-            CustomId = customId,
+            CustomId = walletAdress,
             CreateAccount = true
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
+        PlayFabClientAPI.LoginWithCustomID(request, OnSucces, OnError);
+
     }
 
-    private void OnLoginSuccess(LoginResult result)
+    public void SendLeaderboardd(int score)
     {
-        Debug.Log("Successfully logged in to PlayFab");
-    }
-
-    private void OnLoginFailure(PlayFabError error)
-    {
-        Debug.LogError("Failed to log in to PlayFab: " + error.GenerateErrorReport());
-    }
-
-    public void UpdatePlayerScore(int score)
-    {
-        string customId = PlayerPrefs.GetString("WalletAddress");
         var request = new UpdatePlayerStatisticsRequest
         {
-            Statistics = new List<StatisticUpdate>
-            {
-                new StatisticUpdate { StatisticName = "HackRun", Value = score }
-            },
-            CustomTags = new Dictionary<string, string>
-            {
-                { "CustomId", customId }
-            }
-        };
-        PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdatePlayerScoreSuccess, OnUpdatePlayerScoreFailure);
-    }
-
-    private void OnUpdatePlayerScoreSuccess(UpdatePlayerStatisticsResult result)
-    {
-        Debug.Log("Successfully updated player score");
-    }
-
-    private void OnUpdatePlayerScoreFailure(PlayFabError error)
-    {
-        Debug.LogError("Failed to update player score: " + error.GenerateErrorReport());
-    }
-
-    public void GetLeaderboard()
-    {
-        var request = new GetLeaderboardRequest
-        {
-            StatisticName = "HackRun",
-            StartPosition = 0,
-            MaxResultsCount = 10,
-            ProfileConstraints = new PlayerProfileViewConstraints
-            {
-                ShowDisplayName = true,
-                ShowTags = true
-            }
-        };
-        PlayFabClientAPI.GetLeaderboard(request, OnGetLeaderboardSuccess, OnGetLeaderboardFailure);
-    }
-
-    private void OnGetLeaderboardSuccess(GetLeaderboardResult result)
-    {
-        foreach (var item in result.Leaderboard)
-        {
-            int rank = item.Position + 1;
-            string name = item.DisplayName;
-            //string customId = item.Profile.Tags["CustomId"];
-            Debug.Log(rank + " " + name);
+            Statistics = new List<StatisticUpdate> {
+            new StatisticUpdate { StatisticName = "Score", Value = score }
         }
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdateSuccess, OnError);
     }
 
-    private void OnGetLeaderboardFailure(PlayFabError error)
+    //public void GetLeaderboard()
+    //{
+    //    var request = new GetLeaderboardRequest
+    //    {
+    //        StatisticName = "Score",
+    //        StartPosition = 0,
+    //        MaxResultsCount = 10
+    //    };
+    //    PlayFabClientAPI.GetLeaderboard(request, OnGetLeaderboardSuccess, OnError);
+    //}
+
+    void OnLeaderboardUpdateSuccess(UpdatePlayerStatisticsResult result)
     {
-        Debug.LogError("Failed to get leaderboard: " + error.GenerateErrorReport());
+        Debug.Log("Leaderboard sent");
+        //UpdateDisplayName();
+        //GetLeaderboard();
     }
+
+
+    public void UpdateDisplayName()
+    {
+        PlayerPrefs.SetString("myString", "0xf6C1eb5aAdF622d53e6cC9Dda09b83A942F2CD2f");
+        string walletAdres = PlayerPrefs.GetString("WalletAddress");
+        if (!PlayerPrefs.HasKey("WalletAddress"))
+        {
+            PlayerPrefs.SetString("WalletAddress", walletAdres);
+        }
+        string name = walletAdres.Substring(0, 4) + "..." + walletAdres.Substring(walletAdres.Length - 4);
+        var request = new UpdateUserTitleDisplayNameRequest
+        {
+            DisplayName = name
+        };
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdateSuccess, OnError);
+    }
+
+
+    void OnDisplayNameUpdateSuccess(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Display name updated successfully");
+    }
+
+
+    //void OnGetLeaderboardSuccess(GetLeaderboardResult result)
+    //{
+    //    Debug.Log("Leaderboard fetched completed");
+    //    string leaderboardString = "";
+    //    foreach (var item in result.Leaderboard)
+    //    {
+    //        leaderboardString += item.Position + "              " + item.DisplayName + "           " + item.StatValue + "\n";
+    //    }
+    //    leaderboardText.text = leaderboardString;
+    //}
+
 }

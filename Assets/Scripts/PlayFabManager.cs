@@ -95,7 +95,7 @@ public class PlayFabManager : MonoBehaviour
     {
         var request = new GetLeaderboardRequest
         {
-            StatisticName = "HackRun",
+            StatisticName = "Score",
             StartPosition = 0,
             MaxResultsCount = 10
         };

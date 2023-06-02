@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 0b94b638e0e624613bf6d7f4c5197a62
   - enabled: 1
     path: Assets/Scenes/FetchWallet.unity
-    guid: d50af9452e0764a91a175b7c964b9294
+    guid: b012c71f53b7f1d4eae4c3c7b27283e3
   - enabled: 1
     path: Assets/SRGAssets/CS_Assets/CS_Scenes/SRGMenu.unity
     guid: adcd6a120ea5a14459e17c7c7080d353
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SRGAssets/CS_Assets/CS_Scenes/Leaderboard.unity
     guid: d6a55c49295814ca98d4a7d568998520
+  - enabled: 1
+    path: Assets/Scenes/NFTFetcher.unity
+    guid: 6a83a6d7585eed44c90e926ec31d7252
   m_configObjects: {}
