@@ -728,7 +728,7 @@ MonoBehaviour:
   chainID: 2
   showUserNFTS: 1
   ContractAddress: 0x1C4A72fD9A7260515BD61B8E5BA34ecA63981A57
-  WalletAddress: 0x12b231cd11e525f6a0320Fc0864928235A203C7d
+  WalletAddress: 5aAdF622d53e6cC9Dda09b83A942F2CD2f42F2CD2f
 --- !u!114 &174491107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3271,6 +3271,7 @@ GameObject:
   - component: {fileID: 1659825539}
   - component: {fileID: 1659825541}
   - component: {fileID: 1659825540}
+  - component: {fileID: 1659825542}
   m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
@@ -3287,7 +3288,7 @@ RectTransform:
   m_GameObject: {fileID: 1659825538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 40, y: 35, z: 0}
+  m_LocalScale: {x: 40, y: 28.05508, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 69302207}
@@ -3295,7 +3296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.002305, y: 0}
+  m_AnchoredPosition: {x: -0.002305, y: -235}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1659825540
@@ -3336,6 +3337,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659825538}
   m_CullTransparentMesh: 1
+--- !u!114 &1659825542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659825538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0.07107735, b: 1, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1768860232
 GameObject:
   m_ObjectHideFlags: 0
