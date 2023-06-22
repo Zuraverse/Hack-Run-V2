@@ -9117,12 +9117,14 @@ MonoBehaviour:
     spawnChance: 5
   - spawnObject: {fileID: 467522, guid: 4c3e6cd71b23e744a93d2b3c37c0c646, type: 3}
     spawnChance: 4
-  - spawnObject: {fileID: 422840, guid: 2da51225e713d90468921ca038c4c6ae, type: 3}
+  - spawnObject: {fileID: 422840, guid: d621e9a9007cc9645a49352932838c21, type: 3}
     spawnChance: 2
   - spawnObject: {fileID: 422840, guid: dfe7342cb4ab13842854298619b5d779, type: 3}
     spawnChance: 1
   - spawnObject: {fileID: 422840, guid: 1cb0721b20499224a9bf86fa522e5492, type: 3}
-    spawnChance: 1
+    spawnChance: 2
+  - spawnObject: {fileID: 422840, guid: cf0dba7193cc42c4da583c697b8712e5, type: 3}
+    spawnChance: 2
   sectionGap: 2
   gapToSpeedRatio: 0.3
   minimumGap: 20

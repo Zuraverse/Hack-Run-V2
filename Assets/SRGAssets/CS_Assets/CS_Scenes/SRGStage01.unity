@@ -9878,25 +9878,27 @@ MonoBehaviour:
   currentLevel: 0
   sections:
   - spawnObject: {fileID: 411912, guid: 8b4a937d6f4a0a24fa43656b2f1c11c3, type: 3}
-    spawnChance: 8
+    spawnChance: 10
   - spawnObject: {fileID: 471098, guid: b1fd232ed3baf244a975ec501acd7022, type: 3}
-    spawnChance: 8
+    spawnChance: 10
   - spawnObject: {fileID: 471098, guid: 63d317b032f956549904180c7aa557ce, type: 3}
-    spawnChance: 8
+    spawnChance: 10
   - spawnObject: {fileID: 420148, guid: f8fc7cb2216129c4c932a471ed55f2f0, type: 3}
-    spawnChance: 7
+    spawnChance: 8
   - spawnObject: {fileID: 434712, guid: 2e89534c9a3ccc541bbadba7c197891f, type: 3}
-    spawnChance: 6
+    spawnChance: 8
   - spawnObject: {fileID: 414594, guid: db57a36b10ee9e34e8d819c97524e608, type: 3}
     spawnChance: 5
   - spawnObject: {fileID: 467522, guid: 4c3e6cd71b23e744a93d2b3c37c0c646, type: 3}
-    spawnChance: 4
+    spawnChance: 5
   - spawnObject: {fileID: 422840, guid: 2da51225e713d90468921ca038c4c6ae, type: 3}
-    spawnChance: 2
+    spawnChance: 4
   - spawnObject: {fileID: 422840, guid: dfe7342cb4ab13842854298619b5d779, type: 3}
-    spawnChance: 1
+    spawnChance: 2
   - spawnObject: {fileID: 422840, guid: 1cb0721b20499224a9bf86fa522e5492, type: 3}
-    spawnChance: 1
+    spawnChance: 4
+  - spawnObject: {fileID: 422840, guid: cf0dba7193cc42c4da583c697b8712e5, type: 3}
+    spawnChance: 4
   sectionGap: 2
   gapToSpeedRatio: 0.3
   minimumGap: 20
